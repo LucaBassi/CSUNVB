@@ -2,15 +2,9 @@
 ob_start();
 $title = "CSU-NVB - Tâches hebdomadaires";
 ?>
-<div class="row m-2">
-    <h1>Tâches hebdomadaires</h1>
-</div>
-<?php
-/*foreach()
-    {
-        $dataJson = 'todos.json';
 
-    }*/
+<?php
+
 foreach ($taches as $value) {
     ?>
     <div>
@@ -24,23 +18,16 @@ foreach ($taches as $value) {
         echo $value ['type'];
         echo $value ['value'];
         ?>
-        <form action="index.php?action=selctedItem" method=post>
-            <input type="hidden" value="<?= $value ['id'] ?>" name="idItem">
-            <input type="submit">
+        <form action="index.php?action=delItem" method=post>
+            <input type="hidden" value="<?= $value ['id'] ?>" name="id">
+            <button type="submit" placeholder="Supprimer">Supprimer</button>
         </form>
     </div>
+
     <?php
 }
-
 ?>
-<br>
-<br>
-<br>
-<form method="post" action="index.php?action=adminPage">
-    <button>
-        Supprimer une tâche
-    </button>
-</form>
+
 <?php
 $content = ob_get_clean();
 require "gabarit.php";

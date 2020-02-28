@@ -21,6 +21,21 @@ switch ($action)
     case 'drugs':
         drugHomePage();
         break;
+    case 'selctedItem':
+        search();
+        break;
+    case 'modificationItem' :
+        modificationItem();
+        break;
+
+    case 'adminPage' :
+        adminPage();
+        break;
+
+    case 'delItem' :
+        delteAnItem();
+        break;
+
     default: // unknown action
         require_once 'view/home.php';
         break;

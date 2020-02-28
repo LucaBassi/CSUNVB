@@ -5,29 +5,48 @@
  * Date: Février 2020
  **/
 
+
+
 /**
  * Retourne tous les items dans un tableau indexé de tableaux associatifs
  * Des points seront également retirés au groupe qui osera laisser une des fonctions de ce fichier telle quelle
  * sans l'adapter au niveau de son nom et de son code pour qu'elle dise plus précisément de quelles données elle traite
+ * done
  */
 function readTodoListItems()
 {
-    return json_decode(file_get_contents("model/dataStorage/items.json"),true);
+    $data = json_decode(file_get_contents("model/dataStorage/todos.json"),true);
+    return $data;
 }
+
+
+
+
 
 /**
  * Retourne un item précis, identifié par son id
  * ...
+ * DONE
  */
-function readTodoListItem($id)
+function getSelectedItem($id)
 {
-    $items = getTodoListItems();
-    // TODO: coder la recherche de l'item demandé
-    return $item;
+    $reads = readTodoListItems();
+    foreach($reads as $value)
+    {
+        if($value ['id'] ==  $id)
+        {
+            $searchTotal = $value;
+        }
+    }
+    return $searchTotal;
 }
 
+
+
+
+
 /**
- * Sauve l'ensemble des items dans le fichier json
+ * TODO Sauve l'ensemble des items dans le fichier json
  * ...
  */
 function updateTodoListItems($items)
@@ -40,22 +59,49 @@ function updateTodoListItems($items)
  * Le paramètre $item est un item complet (donc un tableau associatif)
  * ...
  */
-function updateTodoListItem($item)
+function replacementItem($tableauModification,$id)
 {
-    $items = getTodoListItems();
+    $reads = readTodoListItems();
+    $compteur=0;
+    $compteur2=0;
+    $compteur3=0;
+    foreach($reads as $value)
+    {
+        if($value ['id'] ==  $id)
+        {
+            $reads[$compteur] = $tableauModification;
+        }
+        $compteur++;
+    }
+
+
+    /*$items = getTodoListItems();
     // TODO: retrouver l'item donnée en paramètre et le modifier dans le tableau $items
-    saveTodoListItem($items);
+    saveTodoListItem($items);*/
 }
 
 /**
  * Détruit un item précis, identifié par son id
  * ...
  */
-function destroyTodoListItem($id)
+
+function delteItem($id)
 {
-    $items = getTodoListItems();
-    // TODO: coder la recherche de l'item demandé et sa destruction dans le tableau
-    saveTodoListItem($items);
+    $data = json_decode(file_get_contents("model/dataStorage/todos.json"), true);
+    $index=0;
+    foreach ($data as $value) {
+        if ($value ['id'] == $id) {
+            unset($data[$index]);
+            $newData=array_values($data);
+            file_put_contents("model/dataStorage/todos.json", json_encode($newData));
+
+
+            //  $searchTotal = $value;
+        }
+        $index++;
+    }
+    // return $searchTotal;
+//    return $data;
 }
 
 /**
@@ -71,6 +117,7 @@ function createTodoListItem($item)
     saveTodoListItem($items);
     return ($item); // Pour que l'appelant connaisse l'id qui a été donné
 }
+
 
 
 ?>
