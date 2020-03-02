@@ -21,7 +21,7 @@ ob_start();
     </div>
     <form action="index.php?action=modificationItem" method = post>
         <input type="hidden" value="<?=  $itemSearch ['id'] ?>" name="idItem">
-        <input type="submit">
+        <button type="submit">Modifier</button>
     </form>
     <?php
 

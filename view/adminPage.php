@@ -18,10 +18,17 @@ foreach ($taches as $value) {
         echo $value ['type'];
         echo $value ['value'];
         ?>
+
         <form action="index.php?action=delItem" method=post>
             <input type="hidden" value="<?= $value ['id'] ?>" name="id">
             <button type="submit" placeholder="Supprimer">Supprimer</button>
         </form>
+        <span>
+    <form action="index.php?action=modificationItem" method = post>
+        <input type="hidden" value="<?=  $value ['id'] ?>" name="idItem">
+        <button type="submit">Modifier</button>
+    </form>
+            </span>
     </div>
 
     <?php

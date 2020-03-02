@@ -15,7 +15,7 @@
  */
 function readTodoListItems()
 {
-    $data = json_decode(file_get_contents("model/dataStorage/todos.json"),true);
+    $data = json_decode(file_get_contents("model/dataStorage/todos.json"), true);
     return $data;
 }
 
@@ -28,7 +28,7 @@ function readTodoListItems()
  * ...
  * DONE
  */
-function getSelectedItem($id)
+function readTodoListItem2($id)
 {
     $reads = readTodoListItems();
     foreach($reads as $value)
@@ -51,7 +51,7 @@ function getSelectedItem($id)
  */
 function updateTodoListItems($items)
 {
-    file_put_contents("model/dataStorage/items.json",json_encode($items));
+    file_put_contents("model/dataStorage/items.json", json_encode($items));
 }
 
 /**
@@ -118,6 +118,26 @@ function createTodoListItem($item)
     return ($item); // Pour que l'appelant connaisse l'id qui a été donné
 }
 
+
+
+function updateItem($id,$tableauModification)
+{
+    $data = readTodoListItems();
+    $index=0;
+    foreach ($data as $value) {
+        if ($value ['id'] == $id) {
+            $data[$index]=$tableauModification;
+            $newData=array_values($data);
+            file_put_contents("model/dataStorage/todos.json", json_encode($newData));
+
+
+            //  $searchTotal = $value;
+        }
+        $index++;
+    }
+    // return $searchTotal;
+//    return $data;
+}
 
 
 ?>

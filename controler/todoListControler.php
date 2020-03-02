@@ -5,27 +5,35 @@
  * Date: Février 2020
  **/
 
-require_once 'model/todoListModel.php';
+//require_once 'model/todoListModel.php';
 
 function todoListHomePage()
 {
-    require_once "model/todoListModel.php";
-    $taches = readTodoListItems();
+    require 'model/todoListModel.php';
+    $results = readTodoListItems();
+
+
     require_once 'view/todoListHome.php';
 
 }
 
 function search()
 {
-    $id = $_POST['idItem'];
+    $id = $_POST["idItem"];
     require_once 'model/todoListModel.php';
-    $itemSearch = getSelectedItem($id);
+    $itemSearch = readTodoListItem2($id);
     require_once 'view/selectedItem.php';
 
 }
 
 function modificationItem()
 {
+
+    $id = $_POST["idItem"];
+    require_once 'model/todoListModel.php';
+    $itemSearch = readTodoListItem2($id);
+    require_once "view/modificationItem.php";
+/*
     require_once "view/modificationItem.php";
     $tableauModification [0] = $_POST['id'];
     $tableauModification [1] = $_POST['date'];
@@ -35,8 +43,29 @@ function modificationItem()
     $tableauModification [5] = $_POST['acknowledged_by'];
     $tableauModification [6] = $_POST['type'];
     $tableauModification [7] = $_POST['value'];
-    replacementItem($tableauModification);
+    replacementItem($tableauModification);*/
 }
+
+
+function updatedItem(){
+    $id= (int)$_POST["idItem"];
+    $tableauModification ['id'] = $_POST["idItem"];
+    $tableauModification ['date'] = $_POST['date'];
+    $tableauModification ['base'] = $_POST['base'];
+    $tableauModification ['nightjob'] = $_POST['nightjob'];
+    $tableauModification ['description'] = $_POST['description'];
+    $tableauModification ['acknowledged_by'] = $_POST['acknowledged_by'];
+    $tableauModification ['type'] = $_POST['type'];
+    $tableauModification ['value'] = $_POST['value'];
+
+    require_once "model/todoListModel.php";
+
+    updateItem($id,$tableauModification);
+adminPage();
+
+
+}
+
 
 function adminPage()
 {
@@ -50,12 +79,13 @@ function adminPage()
 function delteAnItem()
 {
     require_once "model/todoListModel.php";
-    $id=$_POST["id"];
+    $id = $_POST["id"];
     delteItem($id);
-    todoListHomePage();
-
+    // todoListHomePage();
+    adminPage();
 
     require_once 'view/adminPage.php';
 
 }
+
 ?>

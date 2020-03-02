@@ -28,6 +28,10 @@ switch ($action)
         modificationItem();
         break;
 
+    case 'updatedItem' :
+        updatedItem();
+        break;
+
     case 'adminPage' :
         adminPage();
         break;
