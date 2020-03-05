@@ -40,6 +40,10 @@ switch ($action)
         delteAnItem();
         break;
 
+    case 'download' :
+        download();
+        break;
+
     default: // unknown action
         require_once 'view/home.php';
         break;

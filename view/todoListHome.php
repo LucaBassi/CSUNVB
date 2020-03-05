@@ -40,6 +40,9 @@ foreach ($results  as $result){
         Administrer les taches
     </button>
 </form>
+<button type="button" href="view/newTask">
+    Ajouter une tache
+</button>
 <?php
 $content = ob_get_clean();
 require "gabarit.php";

@@ -88,4 +88,20 @@ function delteAnItem()
 
 }
 
+
+function download()
+{
+    $id=$_POST['idItem'];
+    require_once 'model/todoListModel.php';
+    $itemToDownload = readTodoListItem2($id);
+   // require 'model/todoListModel.php';
+    $results = readTodoListItems();
+    require_once 'pdf.php';
+    printer($results);
+
+
+    require_once 'view/todoListHome.php';
+
+}
+
 ?>
