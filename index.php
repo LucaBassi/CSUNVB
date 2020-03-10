@@ -6,7 +6,6 @@ require "controler/todoListControler.php";
 require "controler/drugControler.php";
 
 $action = $_GET['action'];
-
 switch ($action)
 {
     case 'admin':
@@ -16,15 +15,21 @@ switch ($action)
         shiftEndHomePage();
         break;
     case 'todolist':
-        todoListHomePage();
+        todoListHomePage($_GET);
         break;
     case 'drugs':
         drugHomePage();
         break;
+
     case 'selctedItem':
         search();
         break;
-    case 'modificationItem' :
+
+        case 'base':
+        base();
+        break;
+
+        case 'modificationItem' :
         modificationItem();
         break;
 

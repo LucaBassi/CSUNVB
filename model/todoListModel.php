@@ -6,21 +6,32 @@
  **/
 
 
-
 /**
  * Retourne tous les items dans un tableau indexé de tableaux associatifs
  * Des points seront également retirés au groupe qui osera laisser une des fonctions de ce fichier telle quelle
  * sans l'adapter au niveau de son nom et de son code pour qu'elle dise plus précisément de quelles données elle traite
  * done
+ * @param $base
+ * @return
  */
-function readTodoListItems()
+function readTodoListItems($base)
 {
-    $data = json_decode(file_get_contents("model/dataStorage/todos.json"), true);
+    $datas = json_decode(file_get_contents("model/dataStorage/todos.json"), true);
+    $index = 0;
+
+    foreach ($datas as $baseData) {
+        foreach ($baseData as $key => &$val) {
+            if ($key == 'saint-loup') {
+                // $yes = $data[1];
+                // $baseData[$base] == 'saint-loup';
+                $data = $val;
+                $index++;
+            }
+        }
+    }
+    $index = 0;
     return $data;
 }
-
-
-
 
 
 /**
@@ -28,21 +39,16 @@ function readTodoListItems()
  * ...
  * DONE
  */
-function readTodoListItem2($id)
+function readTodoListItem2($base, $id)
 {
-    $reads = readTodoListItems();
-    foreach($reads as $value)
-    {
-        if($value ['id'] ==  $id)
-        {
+    $reads = readTodoListItems($base);
+    foreach ($reads as $value) {
+        if ($value ['id'] == $id) {
             $searchTotal = $value;
         }
     }
     return $searchTotal;
 }
-
-
-
 
 
 /**
@@ -59,16 +65,14 @@ function updateTodoListItems($items)
  * Le paramètre $item est un item complet (donc un tableau associatif)
  * ...
  */
-function replacementItem($tableauModification,$id)
+function replacementItem($tableauModification, $id)
 {
     $reads = readTodoListItems();
-    $compteur=0;
-    $compteur2=0;
-    $compteur3=0;
-    foreach($reads as $value)
-    {
-        if($value ['id'] ==  $id)
-        {
+    $compteur = 0;
+    $compteur2 = 0;
+    $compteur3 = 0;
+    foreach ($reads as $value) {
+        if ($value ['id'] == $id) {
             $reads[$compteur] = $tableauModification;
         }
         $compteur++;
@@ -88,11 +92,11 @@ function replacementItem($tableauModification,$id)
 function delteItem($id)
 {
     $data = json_decode(file_get_contents("model/dataStorage/todos.json"), true);
-    $index=0;
+    $index = 0;
     foreach ($data as $value) {
         if ($value ['id'] == $id) {
             unset($data[$index]);
-            $newData=array_values($data);
+            $newData = array_values($data);
             file_put_contents("model/dataStorage/todos.json", json_encode($newData));
 
 
@@ -119,15 +123,14 @@ function createTodoListItem($item)
 }
 
 
-
-function updateItem($id,$tableauModification)
+function updateItem($id, $tableauModification)
 {
     $data = readTodoListItems();
-    $index=0;
+    $index = 0;
     foreach ($data as $value) {
         if ($value ['id'] == $id) {
-            $data[$index]=$tableauModification;
-            $newData=array_values($data);
+            $data[$index] = $tableauModification;
+            $newData = array_values($data);
             file_put_contents("model/dataStorage/todos.json", json_encode($newData));
 
 

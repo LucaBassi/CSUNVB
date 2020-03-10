@@ -9,19 +9,32 @@
 
 function todoListHomePage()
 {
+
+    $base=$_GET["base"];
     require 'model/todoListModel.php';
-    $results = readTodoListItems();
+    $results = readTodoListItems($base);
 
 
     require_once 'view/todoListHome.php';
 
 }
 
+function base()
+{
+ //   require 'model/todoListModel.php';
+ //   $results = readTodoListItems();
+
+
+    require_once 'view/base.php';
+
+}
+
 function search()
 {
     $id = $_POST["idItem"];
+    $base = $_POST["base"];
     require_once 'model/todoListModel.php';
-    $itemSearch = readTodoListItem2($id);
+    $itemSearch = readTodoListItem2($base,$id);
     require_once 'view/selectedItem.php';
 
 }
