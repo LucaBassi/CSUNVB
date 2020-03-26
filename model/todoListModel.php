@@ -39,15 +39,20 @@ function readTodoListItems($base)
  * ...
  * DONE
  */
-function readTodoListItem2($base, $id)
+function readTodoListItem2($base, $id,$day)
 {
-    $reads = readTodoListItems($base);
-    foreach ($reads as $value) {
-        if ($value ['id'] == $id) {
-            $searchTotal = $value;
+    $contents = readTodoListItems($base);
+    foreach ($contents as $content) {
+        foreach ($content as $kesDay => &$valueList){
+
+               foreach ($content[$day] as $value)
+            if($kesDay=$day && $value["id"]==$id){
+                $searchTotal = $value;
+            }
+
+           }
         }
-    }
-    return $searchTotal;
+      return $searchTotal;
 }
 
 

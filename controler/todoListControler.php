@@ -33,8 +33,9 @@ function search()
 {
     $id = $_POST["idItem"];
     $base = $_POST["base"];
+    $day=$_POST["day"];
     require_once 'model/todoListModel.php';
-    $itemSearch = readTodoListItem2($base,$id);
+    $itemSearch = readTodoListItem2($base,$id,$day);
     require_once 'view/selectedItem.php';
 
 }

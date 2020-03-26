@@ -4,17 +4,17 @@
       {
         "lundi": [
           {
-            "id": "5",
+            "id": "1",
             "date": "2020-02-03",
             "base": "saint-loup",
             "nightjob": "0xxx",
             "description": "Fax 144  Transmission",
             "acknowledged_by": "xxxx",
-            "type": "0xxx",
+            "type": "xxx",
             "value": "xxx"
           },
           {
-            "id": "4",
+            "id": 2,
             "date": "2020-02-03",
             "base": "saint-loup",
             "nightjob": "42",
@@ -24,7 +24,7 @@
             "value": "yes"
           },
           {
-            "id": "103",
+            "id": 3,
             "date": "2020-02-03",
             "base": "saint-loup",
             "nightjob": "0",
@@ -34,7 +34,7 @@
             "value": "salut"
           },
           {
-            "id": 104,
+            "id": 4,
             "date": "2020-02-03",
             "base": "saint-loup",
             "nightjob": 0,
