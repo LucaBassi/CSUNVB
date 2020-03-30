@@ -21,7 +21,7 @@ function readTodoListItems($base)
 
     foreach ($datas as $baseData) {
         foreach ($baseData as $key => &$val) {
-            if ($key == 'saint-loup') {
+            if ($key == $base) {
                 // $yes = $data[1];
                 // $baseData[$base] == 'saint-loup';
                 $data = $val;
@@ -38,21 +38,25 @@ function readTodoListItems($base)
  * Retourne un item précis, identifié par son id
  * ...
  * DONE
+ * @param $base
+ * @param $id
+ * @param $day
+ * @return
  */
-function readTodoListItem2($base, $id,$day)
+function readTodoListItem2($base, $id, $day)
 {
     $contents = readTodoListItems($base);
     foreach ($contents as $content) {
-        foreach ($content as $kesDay => &$valueList){
+        foreach ($content as $kesDay => &$valueList) {
 
-               foreach ($content[$day] as $value)
-            if($kesDay=$day && $value["id"]==$id){
-                $searchTotal = $value;
-            }
+            foreach ($content[$day] as $value)
+                if ($kesDay == $day && $value["id"] == $id) {
+                    $searchTotal = $value;
+                }
 
-           }
         }
-      return $searchTotal;
+    }
+    return $searchTotal;
 }
 
 

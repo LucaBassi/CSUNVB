@@ -24,6 +24,11 @@ $title = "CSU-NVB - Tâches hebdomadaires";
         display: table-header-group;
     }
 
+    .divTableCell {
+ width: 20%;
+
+    }
+
     .divTableCell, .divTableHead {
         border: 1px solid #999999;
         display: table-cell;
@@ -88,7 +93,7 @@ $date = getdate();
                 ?>
                 <div class="divTableHeading">
                     <div class="divTableRow">
-                        <div class="divTableHead">Journée en cours</div>
+                        <div class="divTableHead">Journée en cours (<?=$auj?> à <?=$base?>) </div>
                     </div>
                 </div>
                 <?php foreach ($todo as $values) { ?>
@@ -123,7 +128,10 @@ $date = getdate();
                         <?= $value ?>
                         <br>
                     <?php } ?>
-                    <button class="btn-holder">Détails</button>
+                    <a href="index.php?action=selctedItem&idItem=<?=$values["id"]?>&base=<?=$values["base"]?>&day=<?=$auj?>">
+                        <button class="btn-holder" > Détails</button>
+                    </a>
+
                 </div>
             <?php } ?>
         <?php } ?>
@@ -133,7 +141,7 @@ $date = getdate();
 <br>
 <br>
 <br>
-<form method="post" action="index.php?action=adminPage">
+<form method="post" action="index.php?action=adminPage&base=<?=$base?>">
     <button>
         Administrer les taches
     </button>

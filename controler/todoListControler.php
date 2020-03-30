@@ -31,9 +31,9 @@ function base()
 
 function search()
 {
-    $id = $_POST["idItem"];
-    $base = $_POST["base"];
-    $day=$_POST["day"];
+    $id = $_GET["idItem"];
+    $base = $_GET["base"];
+    $day=$_GET["day"];
     require_once 'model/todoListModel.php';
     $itemSearch = readTodoListItem2($base,$id,$day);
     require_once 'view/selectedItem.php';
@@ -43,9 +43,11 @@ function search()
 function modificationItem()
 {
 
-    $id = $_POST["idItem"];
+    $id = $_GET["idItem"];
+    $base = $_GET["base"];
+    $day=$_GET["day"];
     require_once 'model/todoListModel.php';
-    $itemSearch = readTodoListItem2($id);
+    $itemSearch = readTodoListItem2($base, $id, $day);
     require_once "view/modificationItem.php";
 /*
     require_once "view/modificationItem.php";
@@ -83,8 +85,9 @@ adminPage();
 
 function adminPage()
 {
+    $base=$_GET['base'];
     require_once "model/todoListModel.php";
-    $taches = readTodoListItems();
+    $taches = readTodoListItems($base);
     require_once 'view/adminPage.php';
 
 }
