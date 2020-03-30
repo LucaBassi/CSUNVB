@@ -1,5 +1,6 @@
 <?php
 ob_start();
+$rows = 0; // Column count
 
 $title = "CSU-NVB - Tâches hebdomadaires";
 ?>
@@ -45,134 +46,62 @@ $title = "CSU-NVB - Tâches hebdomadaires";
         display: table-row-group;
         width: 130%;
     }
+
+
+
+    .divTableCell .btn-holder {
+        justify-content: flex-end;
+        display: flex;
+
+    }
 </style>
 
 <div class="divTable">
-    <div class="divTableHeading">
-        <div class="divTableRow">
-            <div class="divTableHead">Lundi</div>
-            <div class="divTableHead">Mardi</div>
-            <div class="divTableHead">Marcredi</div>
-            <div class="divTableHead">Jeudi</div>
-            <div class="divTableHead">Vendredi</div>
-            <div class="divTableHead">Samedi</div>
-            <div class="divTableHead">Dimanche</div>
-        </div>
-    </div>
 
 
+    <?php foreach ($results
 
-      <?php
+    as $result) { ?>
 
-            foreach ($results as $result) {
-            foreach ($result as $day => &$todo) :
-                ?>
-
-                    <?php
-                    foreach ($todo as $values) {
-                        ?>
-                    <div class="divTableCell">
-                        <?php
-                    foreach ($values as $key => &$value) {
-                        ?>
-
-                        <?= $value ?>
-                        <br>
-                    <?php } ?>
-
-                    <?php if( $day =='lundi'){ ?>
-                        <form action="index.php?action=selctedItem" method=post>
-                            <input type="hidden" value="<?= $result["lundi"][0]["id"]?>" name="idItem">
-                            <input type="hidden" value="<?= $result["lundi"][0]["base"]?>" name="base">
-                            <input type="hidden" value="<?= $day?>" name="day">
-                            <button type="submit"> Voir</button>
-                        </form>
-                    <?php } ?>
-
-                    <?php if( $day =='mardi'){ ?>
-                        <form action="index.php?action=selctedItem" method=post>
-                            <input type="hidden" value="<?= $result["lundi"][0]["id"]?>" name="idItem">
-                            <input type="hidden" value="<?= $result["lundi"][0]["base"]?>" name="base">
-                            <input type="hidden" value="<?= $day?>" name="day">
-                            <button type="submit"> Voir</button>
-                        </form>
-                    <?php } ?>
-                    <?php if( $day =='mercredi'){ ?>
-                        <form action="index.php?action=selctedItem" method=post>
-                            <input type="hidden" value="<?= $result["lundi"][0]["id"]?>" name="idItem">
-                            <input type="hidden" value="<?= $result["lundi"][0]["base"]?>" name="base">
-                            <input type="hidden" value="<?= $day?>" name="day">
-                            <button type="submit"> Voir</button>
-                        </form>
-                    <?php } ?>
-
-                    <?php if( $day =='jeudi'){ ?>
-                        <form action="index.php?action=selctedItem" method=post>
-                            <input type="hidden" value="<?= $result["lundi"][0]["id"]?>" name="idItem">
-                            <input type="hidden" value="<?= $result["lundi"][0]["base"]?>" name="base">
-                            <input type="hidden" value="<?= $day?>" name="day">
-                            <button type="submit"> Voir</button>
-                        </form>
-                    <?php } ?>
-                    <?php if( $day =='vendredi'){ ?>
-                        <form action="index.php?action=selctedItem" method=post>
-                            <input type="hidden" value="<?= $result["lundi"][0]["id"]?>" name="idItem">
-                            <input type="hidden" value="<?= $result["lundi"][0]["base"]?>" name="base">
-                            <input type="hidden" value="<?= $day?>" name="day">
-                            <button type="submit"> Voir</button>
-                        </form>
-                    <?php } ?>
-
-                    <?php if( $day =='samedi'){ ?>
-                        <form action="index.php?action=selctedItem" method=post>
-                            <input type="hidden" value="<?= $result["lundi"][0]["id"]?>" name="idItem">
-                            <input type="hidden" value="<?= $result["lundi"][0]["base"]?>" name="base">
-                            <input type="hidden" value="<?= $day?>" name="day">
-                            <button type="submit"> Voir</button>
-                        </form>
-                    <?php } ?>
-                    <?php if( $day =='dimanche'){ ?>
-                        <form action="index.php?action=selctedItem" method=post>
-                            <input type="hidden" value="<?= $result["lundi"][0]["id"]?>" name="idItem">
-                            <input type="hidden" value="<?= $result["lundi"][0]["base"]?>" name="base">
-                            <input type="hidden" value="<?= $day?>" name="day">
-                            <button type="submit"> Voir</button>
-                        </form>
-                            </div>
-                <?php } ?>
-                </div>
-            <?php } ?>
-         </div>  </div>
-            <?php endforeach; ?>
-        </div>
-            <?php } ?>
-
-            }
-            ?>
-        </div>
-        <div class="divTableFoot">
+    <?php foreach ($result as $day => &$todo) { ?>
+        <div class="divTableHeading">
             <div class="divTableRow">
-                <div class="divTableCell">Sum</div>
-                <div class="divTableCell">&nbsp;</div>
-                <div class="divTableCell">6</div>
-                <div class="divTableCell">$7</div>
+                <div class="divTableHead"><?= $day ?></div>
             </div>
         </div>
-    </div>
+        <?php foreach ($todo as $values) { ?>
+            <div class="divTableCell">
 
 
-    <br>
-    <br>
-    <br>
-    <form method="post" action="index.php?action=adminPage">
-        <button>
-            Administrer les taches
-        </button>
-    </form>
-    <button type="button" href="view/newTask">
-        Ajouter une tache
+                <?php foreach ($values as $key => &$value) { ?>
+                    <?= $value ?>
+                    <br>
+
+                <?php } ?>
+                <button class="btn-holder">Détails</button>
+
+            </div>
+        <?php } ?>
+    <?php } ?>
+</div>
+<?php } ?>
+
+
+<br>
+<br>
+<br>
+<form method="post" action="index.php?action=adminPage">
+    <button>
+        Administrer les taches
     </button>
-    <?php
-    $content = ob_get_clean();
-    require "gabarit.php";
-    ?>
+</form>
+<button type="button" href="view/newTask">
+    Ajouter une tache
+</button>
+
+
+<?php
+
+$content = ob_get_clean();
+require "gabarit.php";
+?>
