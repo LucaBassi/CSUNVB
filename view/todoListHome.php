@@ -48,45 +48,88 @@ $title = "CSU-NVB - Tâches hebdomadaires";
     }
 
 
-
     .divTableCell .btn-holder {
         justify-content: flex-end;
         display: flex;
 
     }
 </style>
-
+<?php
+$date = getdate();
+?>
 <div class="divTable">
-
-
-    <?php foreach ($results
-
-    as $result) { ?>
-
-    <?php foreach ($result as $day => &$todo) { ?>
-        <div class="divTableHeading">
-            <div class="divTableRow">
-                <div class="divTableHead"><?= $day ?></div>
-            </div>
-        </div>
-        <?php foreach ($todo as $values) { ?>
-            <div class="divTableCell">
-
-
-                <?php foreach ($values as $key => &$value) { ?>
-                    <?= $value ?>
-                    <br>
-
-                <?php } ?>
-                <button class="btn-holder">Détails</button>
-
-            </div>
+    <?php foreach ($results as $result) { ?>
+        <?php foreach ($result as $auj => &$todo) { ?>
+            <?php
+            if ($auj == 'lundi') {
+                $day = 'Monday';
+            }
+            if ($auj == 'mardi') {
+                $day = 'Tuesday';
+            }
+            if ($auj == 'mercredi') {
+                $day = 'Wednesday';
+            }
+            if ($auj == 'jeudi') {
+                $day = 'Thursday';
+            }
+            if ($auj == 'vendredi') {
+                $day = 'Friday';
+            }
+            if ($auj == 'samedi') {
+                $day = 'Saturday';
+            }
+            if ($auj == 'dimanche') {
+                $day = 'Sunday';
+            }
+            ?>
+            <?php
+            if ($day == $date['weekday']):
+                ?>
+                <div class="divTableHeading">
+                    <div class="divTableRow">
+                        <div class="divTableHead">Journée en cours</div>
+                    </div>
+                </div>
+                <?php foreach ($todo as $values) { ?>
+                <div class="divTableCell">
+                    <?php foreach ($values as $key => &$value) { ?>
+                        <?= $value ?>
+                        <br>
+                    <?php } ?>
+                    <button class="btn-holder">Détails</button>
+                </div>
+            <?php } ?>
+            <?php endif ?>
         <?php } ?>
     <?php } ?>
 </div>
-<?php } ?>
 
+<br>
+<br>
+<br>
+<br>
+<div class="divTable">
+    <?php foreach ($results as $result) { ?>
+        <?php foreach ($result as $auj => &$todo) { ?>
+            <div class="divTableHeading">
+                <div class="divTableRow">
+                    <div class="divTableHead"><?= $auj ?></div>
+                </div>
+            </div>
+            <?php foreach ($todo as $values) { ?>
+                <div class="divTableCell">
+                    <?php foreach ($values as $key => &$value) { ?>
+                        <?= $value ?>
+                        <br>
+                    <?php } ?>
+                    <button class="btn-holder">Détails</button>
+                </div>
+            <?php } ?>
+        <?php } ?>
 
+    <?php } ?>
+</div>
 <br>
 <br>
 <br>
