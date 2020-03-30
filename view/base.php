@@ -19,7 +19,7 @@ $title = "CSU-NVB - Tâches hebdomadaires";
         <button type="button" name="yverdon" value="yverdon">yverdon</button>
     </a>
 
-    <a href=index.php?action=todolist&base=valee>
+    <a href=index.php?action=todolist&base=valee-de-joux>
         <button type="button" name="valee" value="valee">valee</button>
     </a>
 

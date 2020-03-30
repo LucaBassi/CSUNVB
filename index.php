@@ -34,6 +34,10 @@ if (isset($_GET['action'])) {
             modificationItem();
             break;
 
+        case 'toggleItem' :
+            toggleItem();
+            break;
+
         case 'updatedItem' :
             updatedItem();
             break;

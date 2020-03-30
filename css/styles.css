@@ -26,9 +26,11 @@
 }
 
 .divTableCell {
+    position: relative;
     width: 20%;
 
 }
+
 
 .divTableCell, .divTableHead {
     border: 1px solid #999999;
@@ -44,7 +46,7 @@
 
 .divTableFoot {
     background-color: #EEE;
-    display: table-footer-group;
+
     font-weight: bold;
 }
 
@@ -55,7 +57,12 @@
 
 
 .divTableCell .btn-holder {
-    justify-content: flex-end;
-    display: flex;
+
 
 }
+.textarea {
+    resize: none;
+    height: 100px;
+    min-height: 50px;
+}
+

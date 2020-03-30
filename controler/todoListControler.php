@@ -40,6 +40,22 @@ function search()
 
 }
 
+function toggleItem()
+{
+    $currentValue=$_GET["currentValue"];
+    $id = $_GET["idItem"];
+    $base = $_GET["base"];
+    $day=$_GET["day"];
+    require_once 'model/todoListModel.php';
+    updateteToggleItem($base,$id,$day,$currentValue);
+  //  require_once 'view/selectedItem.php';
+    $results = readTodoListItems($base);
+
+
+    require_once 'view/todoListHome.php';
+
+}
+
 function modificationItem()
 {
 

@@ -4,7 +4,8 @@ ob_start();
 <div class="row m-2">
     <h1>Tâche selectionné</h1>
 </div>
-
+<div>
+    lear
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
@@ -60,19 +61,15 @@ ob_start();
             <?php
             ?>
         </div>
-        </div>
+
+    </div>
 </form>
-</div>
-        <form action="index.php?action=modificationItem" method=post>
-            <input type="hidden" value="<?= $itemSearch ['id'] ?>" name="idItem">
-            <button type="submit">Modifier</button>
-        </form>
 
-        <input type="button" value="Télécharger" id="btnPrint"/>
+<a href="index.php?action=modificationItem&idItem=<?=$itemSearch ['id'] ?>&base=<?=  $itemSearch ['base'] ?>&day=<?= $_GET["day"] ?>">
+    <button class="btn-holder"> Modifier </button>
+</a>
 
-</body>
-</html>
-
+<input type="button" value="Télécharger" id="btnPrint"/>
 <?php
 
 

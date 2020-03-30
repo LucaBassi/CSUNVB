@@ -59,6 +59,36 @@ function readTodoListItem2($base, $id, $day)
     return $searchTotal;
 }
 
+function updateteToggleItem($base, $id, $day, $currentValue)
+{
+    $data = json_decode(file_get_contents("model/dataStorage/todos.json"), true);
+
+    if ($base == 'saint-loup') {
+        $arrayPos = 0;
+    }
+    if ($base == 'payerne') {
+        $arrayPos = 1;
+    }
+    if ($base == 'yverdon') {
+        $arrayPos = 2;
+    }
+    if ($base == 'valee-de-joux') {
+        $arrayPos = 3;
+    }
+    if ($base == 'sainte-croix') {
+        $arrayPos = 4;
+    }
+    $newData = $data;
+    $index = 0;
+    foreach ($newData[$arrayPos][$base][0][$day] as $dayPos) {
+        if ($dayPos['id'] == $id) {
+            $newData[$arrayPos][$base][0][$day][$index]['value'] = !$newData[$arrayPos][$base][0][$day][$index]['value'];
+        }
+        $index++;
+    }
+    file_put_contents("model/dataStorage/todos.json", json_encode($newData));
+
+}
 
 /**
  * TODO Sauve l'ensemble des items dans le fichier json
