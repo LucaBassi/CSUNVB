@@ -22,8 +22,7 @@ $date = getdate();
 
 <article>
 
-    <br>   <br>   <br>
-
+    <br> <br> <br>
 
 
     <div class="divTable">
@@ -58,23 +57,41 @@ $date = getdate();
                     <div class="divTableHeading">
                         <div class="divTableRow">
                             <div class="divTableHead"><h5>Journée en cours</h5><?= $auj ?> à <?= $base ?></div>
-                              <div class="divTableHead"><p id="show" align="center"></p></div>
+                            <div class="divTableHead"><p id="show" align="center"></p></div>
                         </div>
                     </div>
                     <?php foreach ($todo as $values) { ?>
                     <div class="divTableCell">
+
+
+
+
+                        </div>
+
+                        <div>
+
+                            <form id="myForm" method="get">
+                                <input name="idItem" id="idItem" type="hidden" value="<?= $values["id"] ?>"/><br/>
+                                <input name="base" id="base" type="hidden" value="<?= $values["base"] ?>"/><br/>
+                                <input name="day" id="day" type="hidden" value="<?= $auj ?>"/><br/>
+
+                                <input type="button" id="submitFormData" onclick="SubmitFormData();" value="Submit"/>
+                            </form>
+                        </div>
+
+
                         <a href="index.php?action=selctedItem&idItem=<?= $values["id"] ?>&base=<?= $values["base"] ?>&day=<?= $auj ?>">
                             <button class="btn-holder"> Détails</button>
                         </a>
-                        <br>     <br>
+                        <br> <br>
                         <?php foreach ($values as $key => &$value) {
                             if ($key != 'value') {
 
                                 if ($key == 'description') {
                                     ?>
-                                    <textarea  class="textarea" disabled ><?= $value ?></textarea>
+                                    <textarea class="textarea" disabled><?= $value ?></textarea>
                                 <?php } else { ?>
-                                    <?= $key.' : ' ?>
+                                    <?= $key . ' : ' ?>
                                     <?= $value ?>
                                     <br>
                                 <?php }
@@ -83,12 +100,47 @@ $date = getdate();
 
                         <span>
                         <?php if ($values["value"] == 1): ?>
+                  Your data will d... <br/>
+
+                        ============<br/>
+                        <div id="results">
+
+                            <form id="myForm" method="get">
+                                <input name="idItem" id="idItem" type="hidden" value="<?= $values["id"] ?>">
+                                <input name="base" id="base" type="hidden" value="<?= $values["base"] ?>">
+                                <input name="action" id="action" type="hidden" value="toggleItem"/>
+                                <input name="day" id="day" type="hidden" value="<?= $auj ?>"/>
+                                <input name="currentValue" id="base" type="hidden" value="<?= $values["value"] ?>"/>
+
+                                <input type="button" id="submitFormData" onclick="SubmitFormData();" value="Submit"/>
+                            </form>
+
                             <a href="index.php?action=toggleItem&idItem=<?= $values["id"] ?>&base=<?= $values["base"] ?>&day=<?= $auj ?>&currentValue=<?= $values["value"] ?>">
-                            <input  type="image" src="assets/images/check.png" alt="Submit" width="48" height="48">
+
+                                 <input id="submitFormData" onclick="SubmitFormData();" value="Submit"
+                                        type="image" src="assets/images/check.png" alt="Submit" width="48" height="48">
                         </a>
                         <?php elseif ($values["value"] == 0) : ?>
+
+                  Your data will d... <br/>
+
+                        ============<br/>
+                        <div id="results">
+                            <form id="myForm" method="get">
+                                <input name="idItem" id="idItem" type="hidden" value="<?= $values["id"] ?>">
+                                <input name="base" id="base" type="hidden" value="<?= $values["base"] ?>">
+                                <input name="action" id="action" type="hidden" value="toggleItem"/>
+                                <input name="day" id="day" type="hidden" value="<?= $auj ?>"/>
+                                <input name="currentValue" id="currentValue" type="hidden" value="<?= $values["value"] ?>"/>
+
+
+                                <input type="button" id="submitFormData" onclick="SubmitFormData();" value="Submit"/>
+                            </form>
+
+
                             <a href="index.php?action=toggleItem&idItem=<?= $values["id"] ?>&base=<?= $values["base"] ?>&day=<?= $auj ?>&currentValue=<?= $values["value"] ?>">
-                            <input  id="input" type="image" src="assets/images/uncheck.png" alt="Submit" width="48" height="48" >
+                            <input id="input" type="image" src="assets/images/uncheck.png" alt="Submit" width="48"
+                                   height="48">
                         </a>
                         <?php endif; ?>
                     </span>
@@ -115,15 +167,15 @@ $date = getdate();
                         <a href="index.php?action=selctedItem&idItem=<?= $values["id"] ?>&base=<?= $values["base"] ?>&day=<?= $auj ?>">
                             <button class="btn-holder"> Détails</button>
                         </a>
-                        <br>     <br>
+                        <br> <br>
                         <?php foreach ($values as $key => &$value) {
                             if ($key != 'value') {
 
                                 if ($key == 'description') {
                                     ?>
-                                  <br>   <textarea  class="textarea" disabled ><?= $value ?></textarea>  <br> <br>
+                                    <br>   <textarea class="textarea" disabled><?= $value ?></textarea>  <br> <br>
                                 <?php } else { ?>
-                                    <?= $key.' : ' ?>
+                                    <?= $key . ' : ' ?>
                                     <?= $value ?>
                                     <br>
                                 <?php }
@@ -133,11 +185,12 @@ $date = getdate();
                         <span>
                         <?php if ($values["value"] == 1): ?>
                             <a href="index.php?action=toggleItem&idItem=<?= $values["id"] ?>&base=<?= $values["base"] ?>&day=<?= $auj ?>&currentValue=<?= $values["value"] ?>">
-                            <input  type="image" src="assets/images/check.png" alt="Submit" width="48" height="48">
+                            <input type="image" src="assets/images/check.png" alt="Submit" width="48" height="48">
                         </a>
                         <?php elseif ($values["value"] == 0) : ?>
                             <a href="index.php?action=toggleItem&idItem=<?= $values["id"] ?>&base=<?= $values["base"] ?>&day=<?= $auj ?>&currentValue=<?= $values["value"] ?>">
-                            <input  id="input" type="image" src="assets/images/uncheck.png" alt="Submit" width="48" height="48" >
+                            <input id="input" type="image" src="assets/images/uncheck.png" alt="Submit" width="48"
+                                   height="48">
                         </a>
                         <?php endif; ?>
                     </span>
@@ -159,6 +212,25 @@ $date = getdate();
         Ajouter une tache
     </button>
 </article>
+
+<div id="results">
+</div>
+
+<script>function SubmitFormData() {
+        var idItem = $("#idItem").val();
+        var base = $("#base").val();
+        var day = $("#day").val();
+        var action = $("#action").val();
+        var currentValue = $("#currentValue").val();
+
+        $.get("index.php", {action: action, currentValue: currentValue, idItem: idItem, base: base, day: day},
+            function (data) {
+                $('#results').html(data);
+                $('#myForm')[0].reset();
+            });
+    }
+</script>
+
 <script>
     $(document).ready(function (e) {
         let UrlsObj = localStorage.getItem('rememberScroll');
