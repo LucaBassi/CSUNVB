@@ -1,39 +1,55 @@
+<script type="text/javascript">
+    function validate(frm)
+    {
+        var ele = frm.elements['feedurl[]'];
+        if (! ele.length)
+        {
+            alert(ele.value);
+        }
+        for(var i=0; i<ele.length; i++)
+        {
+            alert(ele[i].value);
+        }
+        return true;
+    }
+    function add_feed()
+    {
+        var div1 = document.createElement('div');
+        // Get template data
+        div1.innerHTML = document.getElementById('newlinktpl').innerHTML;
+        // append to our form, so that template data
+        //become part of form
+        document.getElementById('newlink').appendChild(div1);
+    }
+</script>
 
-
-    <script type="text/javascript"
-            src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script>
-        $(document).ready(
-            function() {
-                setInterval(function() {
-                    var today = new Date();
-                    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
-                    var randomnumber = Math.floor(Math.random() * 100);
-                    $('#show').text(
-                        'I am getting refreshed every 3 seconds..! Random Number ==> '
-                        + time);
-                }, 1000);
-            });
-    </script>
-
-
-<div id="show" align="center"></div>
 <style>
-    .div-wrapper {
-    position: relative;
-    height: 300px;
-    width: 300px;
-    }
-
-    .div-wrapper img {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    }
+    .feed {padding: 5px 0}
 </style>
-
-
-    <div class="div-wrapper">
-        <img src="blah.png"/>
+<form method="post" action="index.php" onsubmit="return validate(this)">
+    <table>
+        <tr>
+            <td valign=top> Feed URL (s):</td>
+            <td valign=top>
+                <div id="newlink">
+                    <div class="feed">
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <p>
+        <br>
+        <input type="submit" name="submit1">
+        <input type="reset" name="reset1" placeholder="ss"></p>
+    </p>
+    <p id="addnew">
+        <a href="javascript:add_feed()">Add New </a>
+    </p>
+</form>
+<!-- Template. This whole data will be added directly to working form above -->
+<div id="newlinktpl" style="display:none">
+    <div class="feed">
+        <input type="text" name="tache[]" value=""  size="50">
     </div>
-
+</div>

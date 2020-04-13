@@ -4,9 +4,9 @@ ob_start();
 <div class="row m-2">
     <h1>Tâche selectionné</h1>
 </div>
-<div>
-    lear
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
 <head>
     <title></title>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -23,9 +23,11 @@ ob_start();
         });
     </script>
 </head>
-<body>
+
+
+<div>
 <form id="form1">
-    <div id="dvContainer">
+
         <br>
         <div>
             <dl>
@@ -64,15 +66,15 @@ ob_start();
 
     </div>
 </form>
-
+</div>
 <a href="index.php?action=modificationItem&idItem=<?=$itemSearch ['id'] ?>&base=<?=  $itemSearch ['base'] ?>&day=<?= $_GET["day"] ?>">
     <button class="btn-holder"> Modifier </button>
 </a>
 
 <input type="button" value="Télécharger" id="btnPrint"/>
+
+
 <?php
-
-
 $content = ob_get_clean();
 require "gabarit.php";
 ?>

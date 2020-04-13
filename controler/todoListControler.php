@@ -82,19 +82,21 @@ function modificationItem()
 function updatedItem(){
     $id= (int)$_POST["idItem"];
     $tableauModification ['id'] = $_POST["idItem"];
-    $tableauModification ['date'] = $_POST['date'];
+  //  $tableauModification ['date'] = $_POST['date'];
     $tableauModification ['base'] = $_POST['base'];
     $tableauModification ['nightjob'] = $_POST['nightjob'];
     $tableauModification ['description'] = $_POST['description'];
     $tableauModification ['acknowledged_by'] = $_POST['acknowledged_by'];
     $tableauModification ['type'] = $_POST['type'];
-    $tableauModification ['value'] = $_POST['value'];
-
+ $tableauModification ['value'] = $_POST['value'];
+    $day = $_POST['day'];
+    $base=$tableauModification ['base'];
     require_once "model/todoListModel.php";
-
-    updateItem($id,$tableauModification);
-adminPage();
-
+    $_GET['base']=$base;
+    updateItem($id,$tableauModification,$day, $base);
+   // adminPage($_GET);
+    $results = readTodoListItems($base);
+    require "view/todoListHome.php";
 
 }
 
@@ -136,5 +138,19 @@ function download()
     require_once 'view/todoListHome.php';
 
 }
+
+
+
+function resetAllTasks($base){
+    $base=$base["base"];
+    require_once "model/todoListModel.php";
+    resetAllTasksRequest($base);
+
+
+    $results = readTodoListItems($base);
+    require "view/todoListHome.php";
+
+}
+
 
 ?>

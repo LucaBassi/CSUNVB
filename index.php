@@ -31,7 +31,7 @@ if (isset($_GET['action'])) {
             break;
 
         case 'modificationItem' :
-            modificationItem();
+            modificationItem($_GET);
             break;
 
         case 'toggleItem' :
@@ -39,15 +39,19 @@ if (isset($_GET['action'])) {
             break;
 
         case 'updatedItem' :
-            updatedItem();
+            updatedItem($_GET);
             break;
 
         case 'adminPage' :
-            adminPage();
+            adminPage($_GET);
             break;
 
         case 'delItem' :
             delteAnItem();
+            break;
+
+        case 'resetAllTasks' :
+            resetAllTasks($_GET);
             break;
 
         case 'download' :
